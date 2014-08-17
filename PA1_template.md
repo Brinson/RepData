@@ -10,7 +10,7 @@ activityday <- transform(activitydata,date=as.Date(date))
 ```
 
 ## What is mean total number of steps taken per day?
-```{R,ECHO=TRUE}
+```R
 steps <- tapply(activityday$steps, activityday$date, FUN = sum, na.rm = TRUE)
 hist(steps,breaks=30,main="Steps Per Day By Frequency",xlab="Daily Steps")
 ```
