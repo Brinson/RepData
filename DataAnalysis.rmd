@@ -2,7 +2,7 @@
 
 
 ## Loading and preprocessing the data
-```{R,ECHO=TRUE}
+```{r}
 unzip(zipfile="activity.zip")
 setwd("/home/chase/repro/RepData_PeerAssessment1/")
 activitydata <- read.csv("activity.csv",header=TRUE)
@@ -10,9 +10,22 @@ activityday <- transform(activitydata,date=as.Date(date))
 ```
 
 ## What is mean total number of steps taken per day?
-```{R,ECHO=TRUE}
+First, Lets transform the data a bit to give us totals by day.
+
+```{r}
 steps <- tapply(activityday$steps, activityday$date, FUN = sum, na.rm = TRUE)
-hist(steps,breaks=30,main="Steps Per Day By Frequency",xlab="Daily Steps")
+```
+Now, Let's Plot This to a Histogram.
+
+```{r fig.width=7, fig.height=6}
+hist(steps,breaks=61,main="Steps Per Day By Frequency",xlab="Daily Steps")
+```
+
+Now, Let's calculate Mean and Median using these day totals.
+
+```{r}
+mean(steps,na.rm=TRUE)
+median(steps)
 ```
 
 ## What is the average daily activity pattern?
